@@ -1,13 +1,10 @@
-FROM node:14.alpine
+# Use the official Nginx image
+FROM nginx:alpine
 
-WORKDIR /user/src/app
+# Copy your HTML file to the default Nginx public folder
+COPY index.html /usr/share/nginx/html/index.html
 
-COPY package*.json ./
+# Expose port 80 (Nginx default)
+EXPOSE 80
 
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["node", "index.js"]
+# Nginx will start automatically
